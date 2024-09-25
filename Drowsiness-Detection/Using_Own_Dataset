@@ -1,0 +1,106 @@
+Start
+   |
+   v
+Initialize Pygame mixer and load alert sound
+   |
+   v
+Define helper functions (euclidean_distance, eye_aspect_ratio, mouth_aspect_ratio)
+   |
+   v
+Initialize MediaPipe and OpenCV
+   |
+   v
+Set drawing specifications for landmarks
+   |
+   v
+Initialize variables (frame_count, flag, alert_flag, start_time, frame_counter, fps)
+   |
+   v
+Ensure 'saved_frames' directory exists
+   |
+   v
+Start capturing video (with mp_face_mesh.FaceMesh as face_mesh)
+   |
+   v
+Is frame captured successfully?
+   |---------------|
+  Yes             No
+   |               |
+   v               v
+Convert frame to RGB and process with MediaPipe
+   |
+   v
+Are face landmarks detected?
+   |---------------|
+  Yes             No
+   |               |
+   v               v
+For each detected face:
+   |
+   v
+Extract left eye, right eye, and mouth landmarks
+   |
+   v
+Calculate EAR for left eye and right eye, then average them
+   |
+   v
+Calculate MAR for mouth
+   |
+   v
+Draw landmarks on frame
+   |
+   v
+Is EAR <= 0.25?
+   |---------------|
+  Yes             No
+   |               |
+Increment   |       |
+alert_flag >= 15?   |
+   |               |
+   |--------------|  |
+  Yes             No |
+   |               | |
+Play alert sound   | |
+   |               | |
+   v               | |
+Display 'Alert' on frame
+   |
+   v
+Is EAR <= 0.29 or MAR >= 0.60?
+   |---------------|
+  Yes             No
+   |               |
+Increment       Reset flag and alert_flag, stop alert sound
+flag >= 10?         |
+   |               |
+   |--------------|  |
+  Yes             No |
+   |               | |
+   v               | |
+Display 'Warning' on frame
+   |
+   v
+Display EAR and MAR values on frame
+   |
+   v
+Increment frame_counter
+   |
+   v
+Calculate and display FPS
+   |
+   v
+Display frame
+   |
+   v
+Is 'q' key pressed?
+   |---------------|
+  Yes             No
+   |               |
+   v               |
+Break loop         |
+   |               |
+   v               |
+Release video capture object and close all windows
+   |
+   v
+End
